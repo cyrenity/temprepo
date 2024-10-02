@@ -15,8 +15,8 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: ghcr.io
-        username: ${{github.actor}}
-        password: "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"
+        username: ${{ GH_USER }}
+        password: ${{ GH_TOKEN }}
         
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag tempapp:$(date +%s)
