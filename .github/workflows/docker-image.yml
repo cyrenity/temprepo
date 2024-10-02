@@ -19,5 +19,4 @@ jobs:
         password: "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"
         
     - name: Build the Docker image
-      uses: actions/checkout@v4
       run: docker build . --file Dockerfile --tag tempapp:$(date +%s)
