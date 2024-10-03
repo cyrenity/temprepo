@@ -27,7 +27,7 @@ jobs:
         #workingDirectory: another/path/where/a/git/repo/is/checked/out # Optional alternative working directory
     - name: 'Get next minor version'
       id: semvers
-      uses: "WyriHaximus/github-action-next-release-version@v1"
+      uses: "WyriHaximus/github-action-next-semvers@v1"
       with:
         version: ${{ steps.previoustag.outputs.tag }}
     - name: Create release
