@@ -23,4 +23,5 @@ jobs:
       run: |
         docker build . --file Dockerfile --tag ghcr.io/${{ secrets.GH_USER }}/tempapp:latest --tag ghcr.io/${{ secrets.GH_USER }}/tempapp:${GITHUB_SHA::7} 
         docker push ghcr.io/cyrenity/tempapp:latest
+        docker push ghcr.io/cyrenity/tempapp:${GITHUB_SHA::7}
 
