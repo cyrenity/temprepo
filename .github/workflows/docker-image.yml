@@ -32,12 +32,11 @@ jobs:
         version: ${{ steps.previoustag.outputs.tag }}
     - name: Create release
       id: create_release_id
-      uses: actions/create-release@v1
+      uses: "WyriHaximus/github-action-create-milestone@v1"
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
-        tag_name: ${{ steps.semvers.outputs.version }}
-        release_name: Release ${{ steps.semvers.outputs.version }}
+        title: ${{ steps.semvers.outputs.patch }}
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag ghcr.io/${{ secrets.GH_USER }}/tempapp:${{ steps.semvers.outputs.tag }}
