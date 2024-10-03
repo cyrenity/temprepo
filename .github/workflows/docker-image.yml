@@ -37,11 +37,6 @@ jobs:
         title: ${{ steps.semvers.outputs.patch }}
       env:
         GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
-
-    - name: Build the Docker image
-      run: |
-        docker build . --file Dockerfile --tag ghcr.io/${{ secrets.GH_USER }}/tempapp:${{ steps.semvers.outputs.patch }}
-        docker push ghcr.io/cyrenity/tempapp:${{ steps.semvers.outputs.patch }}
     - name: Create release
       id: create_release_id
       uses: actions/create-release@v1
@@ -50,3 +45,9 @@ jobs:
       with:
         tag_name: ${{ steps.semvers.outputs.version }}
         release_name: Release ${{ steps.semvers.outputs.version }}
+        
+    - name: Build the Docker image
+      run: |
+        docker build . --file Dockerfile --tag ghcr.io/${{ secrets.GH_USER }}/tempapp:${{ steps.semvers.outputs.patch }}
+        docker push ghcr.io/cyrenity/tempapp:${{ steps.semvers.outputs.patch }}
+
